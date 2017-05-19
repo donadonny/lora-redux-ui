@@ -1,0 +1,17 @@
+{
+  "transport": "scp",
+  "uploadOnSave": true,
+  "useAtomicWrites": false,
+  "deleteLocal": false,
+  "hostname": "207.154.240.83",
+  "port": "22",
+  "target": "/root/lora-app-server/enhancementui",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**",
+    "node_modules"
+  ],
+  "username": "root",
+  "keyfile": "/Users/JoshPAT/.ssh/intern",
+  "watch": []
+}
