@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 const Brand = styled.div`
   padding-left: 10px;
   background-color: #23282e;
-  line-height: 50px;
+  line-height: 52px;
   display: block;
   font-size: 14px;
   color: #e1ffff;
@@ -61,8 +61,6 @@ const SidebarItem = styled.li`
     color: #e1ffff;
   }
 `
-
-
 
 const Sidebar = ({ active, onClick }) => (
   <Wrapper active={active}>

@@ -58,12 +58,12 @@ class Main extends Component {
     const { children, active, inputValue } = this.props
     return (
       <Wrapper active={active}>
-        <Navbar />
-        {/* <Content/>
+        <Navbar toggleDropdown={this.handleChange}/>
+        <Content/>
         <Explore value={inputValue}
                  onChange={this.handleChange} />
           {this.renderErrorMessage()}
-          {children} */}
+          {children}
       </Wrapper>
     )
   }
