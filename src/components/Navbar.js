@@ -1,27 +1,61 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Grid, NavHeader, Navbar as Nav } from 'react-bootstrap'
 import { Link } from 'react-router';
 import Logo from "../../public/images/Logo_white.png"
 
 const Wrapper = styled.div`
-  height: 50px !important;
-  position: absolute;
+  left: -1px;
+  position: relative;
   z-index: 20;
-  margin: 0;
-  border: none;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  position: absolute;
-  margin-top: 0px;
+  top: 0px;
   background-color: #1f262d;
+  height: 50px;
+  box-shadow:0 0 8px 0 black;
+
+  margin: 0px !important;
+  border-radius: 0px !important;
 `
+
+const Nav = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-right: 1px solid #2e363f;
+`
+
+const NavItem = styled.li`
+  float: left;
+ 	list-style-type: none;
+ 	margin: 0;
+ 	position: relative;
+  border-right: 1px solid #000;
+  border-left: 1px solid #000;
+
+  a {
+    display: block;
+    font-size: 11.5px;
+    color: #999;
+    padding: 16px 13px !important;
+  }
+
+  a:hover {
+    color: #ffffff;
+    background: #000 !important;
+  }
+`
+
 const Brand = styled.a`
   img {
-    position: absolute;
-    height: 100%;
     padding: 13px;
-    width: auto;
+    width: 100px !important;
   }
+`
+const NavDropdown = styled(Nav)`
+  text-align: left;
+`
+
+const NavDropdownItem = styled(NavItem)`
+
 `
 
 
@@ -30,7 +64,6 @@ const Brand = styled.a`
 //   height: 50px;
 // }
 //
-// .navbar {min-height: 40px !important;}
 //
 // .navbar-brand {
 //   padding: 0px;
@@ -42,16 +75,6 @@ const Brand = styled.a`
 //   width: auto;
 // }
 //
-// .navbar-toggle {
-//   margin-top: 0px;
-//   margin-bottom: 0px;
-// }
-//
-// .navbar-fixed-top {
-//   position: absolute;
-//   margin-top: 0px;
-//   margin-bottom: 0px;
-// }
 
 // #user-nav {
 // 	position: absolute;
@@ -61,9 +84,7 @@ const Brand = styled.a`
 // 	margin: 0;
 // }
 // #user-nav > ul {
-// 	margin: 0;
-// 	padding: 0;
-// 	list-style: none; border-right: 1px solid #2e363f;border-left: 1px solid #000;
+//
 // }
 // #user-nav > ul > li {
 // 	float: left;
@@ -102,42 +123,27 @@ const Brand = styled.a`
 
 
 const Navbar = () => (
-  <Wrapper>
-    <Grid>
-      <Nav.Header>
-        <Brand href="http://www.matchx.io/">
-          <img alt="Brand" src={Logo}></img>
-        </Brand>
-      </Nav.Header>
-
-      <div id="navbar" className="navbar-collapse collapse">
-
-        <ul class="nav">
-          <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
-            <li class="divider"></li>
-            <li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
-            <li class="divider"></li>
-            <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
-          </ul>
-          </li>
-          <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-            <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> new message</a></li>
-            <li class="divider"></li>
-            <li><a class="sInbox" title="" href="#"><i class="icon-envelope"></i> inbox</a></li>
-            <li class="divider"></li>
-            <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> outbox</a></li>
-            <li class="divider"></li>
-            <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> trash</a></li>
-            </ul>
-          </li>
-          <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-          <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
-        </ul>
+  <Wrapper className="navbar">
+    <Nav className="nav">
+      <div className="navbar-header">
+        <Brand href="http://www.matchx.io/"><img alt="Brand" src={Logo}></img></Brand>
       </div>
-    </Grid>
+      <NavItem className="dropdown">
+        <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle">
+          <i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b>
+        </a>
+        <NavDropdown className="dropdown-menu">
+          <NavDropdownItem><a href="#"><i class="icon-user"></i> My Profile</a></NavDropdownItem>
+          <NavDropdownItem class="divider"></NavDropdownItem>
+          <NavDropdownItem><a href="#"><i class="icon-check"></i> My Tasks</a></NavDropdownItem>
+          <NavDropdownItem class="divider"></NavDropdownItem>
+          <NavDropdownItem><a href="login.html"><i class="icon-key"></i> Log Out</a></NavDropdownItem>
+        </NavDropdown>
+    </NavItem>
+
+    <NavItem><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></NavItem>
+    <NavItem><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></NavItem>
+    </Nav>
   </Wrapper>
 )
 {/* <ul className="nav navbar-nav navbar-right">

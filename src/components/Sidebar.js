@@ -42,15 +42,6 @@ const SidebarList = styled.ul`
   bottom: ${props => props.bottom ? '0' : 'inherit'};
   width: ${props => props.bottom ? '100%' : 'inherit'};
 
-  li {
-    padding-left: 10px;
-
-    a {
-      text-decoration: none;
-      color: #e1ffff;
-    }
-  }
-
   li:hover {
     border-left: 3px solid #d19b3d;
     background-color: #4f5b69;
@@ -62,19 +53,30 @@ const SidebarList = styled.ul`
   }
 `
 
+const SidebarItem = styled.li`
+
+  a {
+    padding: 20px 15px;
+    text-decoration: none;
+    color: #e1ffff;
+  }
+`
+
+
+
 const Sidebar = ({ active, onClick }) => (
   <Wrapper active={active}>
     <Brand>Menu<Icon className="fa fa-bars fa-lg" id="menu-toggle" onClick={onClick}/></Brand>
     <SidebarList>
-      <li><Link to="/">Dashboard<Icon className="fa fa-dashboard fa-lg"/></Link></li>
-      <li><Link to="maps/view">Maps<Icon className="fa fa-map fa-lg"/></Link></li>
-      <li><Link to="applications">Apps<Icon className="fa fa-cogs fa-lg"/></Link></li>
-      <li><Link to="users">Users<Icon className="fa fa-users fa-lg"/></Link></li>
-      <li><Link to="gateways">Gateways<Icon className="fa fa-server fa-lg"/></Link></li>
+      <SidebarItem><Link to="/">Dashboard<Icon className="fa fa-dashboard fa-lg"/></Link></SidebarItem>
+      <SidebarItem><Link to="maps/view">Maps<Icon className="fa fa-map fa-lg"/></Link></SidebarItem>
+      <SidebarItem><Link to="appSidebarItemcations">Apps<Icon className="fa fa-cogs fa-lg"/></Link></SidebarItem>
+      <SidebarItem><Link to="users">Users<Icon className="fa fa-users fa-lg"/></Link></SidebarItem>
+      <SidebarItem><Link to="gateways">Gateways<Icon className="fa fa-server fa-lg"/></Link></SidebarItem>
     </SidebarList>
     <SidebarList bottom>
-      <li><Link to="/">Contact<Icon className="fa fa-envelope fa-lg"/></Link></li>
-      <li><Link to="/">Settings<Icon className="fa fa-cog fa-lg"/></Link></li>
+      <SidebarItem><Link to="/">Contact<Icon className="fa fa-envelope fa-lg"/></Link></SidebarItem>
+      <SidebarItem><Link to="/">Settings<Icon className="fa fa-cog fa-lg"/></Link></SidebarItem>
     </SidebarList>
   </Wrapper>
 )

@@ -51,7 +51,7 @@ export default class Explore extends Component {
           Code on <a href={GITHUB_REPO} target="_blank">Github</a>.
         </p>
         <p>
-          Move the DevTools with Ctrl+J or hide them with Ctrl+H.
+          Move the DevTools with Ctrl+J or hide them with Ctrl+K.
         </p>
       </div>
     )

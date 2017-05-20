@@ -59,11 +59,11 @@ class Main extends Component {
     return (
       <Wrapper active={active}>
         <Navbar />
-        <Content/>
+        {/* <Content/>
         <Explore value={inputValue}
                  onChange={this.handleChange} />
           {this.renderErrorMessage()}
-          {children}
+          {children} */}
       </Wrapper>
     )
   }
