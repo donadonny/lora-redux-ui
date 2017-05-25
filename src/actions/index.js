@@ -1,4 +1,29 @@
 import { CALL_API, Schemas } from '../middleware/api'
+import { Auth } from '../agent'
+
+export const LOGIN_REQUEST = 'LOGIN_REQUEST'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+
+// Login
+// Relies on the custom API middleware defined in ../middleware/api.js.
+export const requestLogin = creds => ({
+  creds,
+  [CALL_API]: {
+    entity: false,
+    types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE ],
+    endpoint: '/api/internal/login',
+    agent: Auth.login(creds)
+  }
+})
+
+// Logout
+// Relies on the custom API middleware defined in ../middleware/api.js.
+
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
+
 
 export const USER_REQUEST = 'USER_REQUEST'
 export const USER_SUCCESS = 'USER_SUCCESS'
@@ -8,6 +33,7 @@ export const USER_FAILURE = 'USER_FAILURE'
 // Relies on the custom API middleware defined in ../middleware/api.js.
 const fetchUser = login => ({
   [CALL_API]: {
+    entity: true,
     types: [ USER_REQUEST, USER_SUCCESS, USER_FAILURE ],
     endpoint: `users/${login}`,
     schema: Schemas.USER
@@ -33,6 +59,7 @@ export const REPO_FAILURE = 'REPO_FAILURE'
 // Relies on the custom API middleware defined in ../middleware/api.js.
 const fetchRepo = fullName => ({
   [CALL_API]: {
+    entity: true,
     types: [ REPO_REQUEST, REPO_SUCCESS, REPO_FAILURE ],
     endpoint: `repos/${fullName}`,
     schema: Schemas.REPO
@@ -59,6 +86,7 @@ export const STARRED_FAILURE = 'STARRED_FAILURE'
 const fetchStarred = (login, nextPageUrl) => ({
   login,
   [CALL_API]: {
+    entity: true,
     types: [ STARRED_REQUEST, STARRED_SUCCESS, STARRED_FAILURE ],
     endpoint: nextPageUrl,
     schema: Schemas.REPO_ARRAY
@@ -90,6 +118,7 @@ export const STARGAZERS_FAILURE = 'STARGAZERS_FAILURE'
 const fetchStargazers = (fullName, nextPageUrl) => ({
   fullName,
   [CALL_API]: {
+    entity: true,
     types: [ STARGAZERS_REQUEST, STARGAZERS_SUCCESS, STARGAZERS_FAILURE ],
     endpoint: nextPageUrl,
     schema: Schemas.USER_ARRAY
@@ -121,6 +150,7 @@ export const resetErrorMessage = () => ({
 
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
 
+// Toggle the Main view side bar
 export const toggleSiderBar = () => ({
     type: TOGGLE_SIDEBAR
 })

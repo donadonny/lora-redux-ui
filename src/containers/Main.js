@@ -9,16 +9,21 @@ import { resetErrorMessage } from '../actions'
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  position: fixed;
+  position: relative;
   padding-left: ${props => props.active ? '130px' : '45px'};
+  height: 100%;
   width: 100%;
-  overflow: auto;
   transition: all .4s ease 0s;
+  overflow: auto;
 `
 
-const Content = () => (
-  <div>Hello</div>
-)
+const Content = styled.div`
+  top: 50px;
+  height: auto;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+`
 
 class Main extends Component {
   static PropTypes = {
@@ -58,12 +63,13 @@ class Main extends Component {
     const { children, active, inputValue } = this.props
     return (
       <Wrapper active={active}>
-        <Navbar toggleDropdown={this.handleChange}/>
-        <Content/>
-        <Explore value={inputValue}
+        <Navbar/>
+        <Content>
+          <Explore value={inputValue}
                  onChange={this.handleChange} />
           {this.renderErrorMessage()}
           {children}
+        </Content>
       </Wrapper>
     )
   }
