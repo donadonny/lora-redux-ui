@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 `
 
 const Brand = styled.div`
-  padding-left: 10px;
+  padding-left: 15px;
   background-color: #23282e;
   line-height: 52px;
   display: block;

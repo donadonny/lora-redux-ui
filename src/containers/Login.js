@@ -37,7 +37,7 @@ const Image = styled.img`
 
 const CenterGrid = styled(Grid)`
   position: relative;
-  top: 30%;
+  top: 20%;
 `
 const Hr = styled.hr`
   border-color: #8c8c8c;
@@ -83,10 +83,10 @@ class Login extends Component {
       <Wrapper>
         <CenterGrid>
           <Row className="show-grid">
-            <Col xsOffset={1} xs={10} mdOffset={3} md={6}>
+            <Col xsOffset={1} xs={10} smOffset={3} sm={6}>
               <Hr />
             </Col>
-            <Col xsOffset={2} xs={8} mdOffset={4} md={4}>
+            <Col xsOffset={2} xs={8} smOffset={4} sm={4}>
               <Form horizontal onSubmit={this.handleSubmit}>
                 <FormGroup controlId="formHorizontalLogo">
                   <a href="http://matchx.io"><Image src={Logo} alt="Logo" /></a>
@@ -107,7 +107,7 @@ class Login extends Component {
                   </InputGroup>
                 </FormGroup>
                 <Space />
-                <Col mdOffset={3} md={6}>
+                <Col smOffset={3} sm={6}>
                   <FormGroup>
                     <Button type="submit" bsStyle="success" block disabled={isFetching}>Signin</Button>
                   </FormGroup>
@@ -115,7 +115,7 @@ class Login extends Component {
               </Form>
             </Col>
           </Row>
-          <Col xsOffset={1} xs={10} mdOffset={3} md={6}>
+          <Col xsOffset={1} xs={10} smOffset={3} sm={6}>
             <Hr />
           </Col>
         </CenterGrid>

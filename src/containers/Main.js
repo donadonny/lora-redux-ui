@@ -5,7 +5,7 @@ import Explore from '../components/Explore'
 import Navbar from '../components/Navbar'
 
 import { browserHistory } from 'react-router'
-import { resetErrorMessage } from '../actions'
+import { resetErrorMessage, requestProfile, logout } from '../actions'
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -29,8 +29,20 @@ class Main extends Component {
   static PropTypes = {
     inputValue: PropTypes.string,
     errorMessage: PropTypes.string,
+    currentUser: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+
     resetErrorMessage: PropTypes.func.isRequired,
+    requestProfile: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
   }
+
+  componentWillMount() {
+    if (!this.props.isAuthenticated) {
+      this.props.requestProfile()
+    }
+  }
+
 
   handleDismissClick = e => {
     this.props.resetErrorMessage()
@@ -39,6 +51,10 @@ class Main extends Component {
 
   handleChange = nextValue => {
     browserHistory.push(`/${nextValue}`)
+  }
+
+  handleLogout = () => {
+    this.props.logout()
   }
 
   renderErrorMessage() {
@@ -60,10 +76,13 @@ class Main extends Component {
   }
 
   render() {
-    const { children, active, inputValue } = this.props
+    const { children, active, inputValue, isAuthenticated, currentUser } = this.props
     return (
       <Wrapper active={active}>
-        <Navbar/>
+        <Navbar
+          logout={this.handleLogout}
+          isAuthenticated={isAuthenticated}
+          currentUser={currentUser}/>
         <Content>
           <Explore value={inputValue}
                  onChange={this.handleChange} />
@@ -78,8 +97,12 @@ class Main extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   errorMessage: state.errorMessage,
+  currentUser: state.auth.currentUser,
+  isAuthenticated: state.auth.isAuthenticated
 })
 
 export default connect(mapStateToProps, {
   resetErrorMessage,
+  requestProfile,
+  logout
 })(Main)

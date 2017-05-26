@@ -107,10 +107,10 @@ export default store => next => action => {
   if (typeof endpoint === 'function') {
     endpoint = endpoint(store.getState())
   }
-
   if (typeof endpoint !== 'string') {
-    throw new Error('Specify a string endpoint URL.')
+      throw new Error('Specify a string endpoint URL.')
   }
+
   if (!Array.isArray(types) || types.length !== 3) {
     throw new Error('Expected an array of three action types.')
   }
@@ -152,7 +152,7 @@ export default store => next => action => {
       })),
       error => next(actionWith({
         type: failureType,
-        error: error.error || 'Something bad happened'
+        error: error.error || JSON.stringify(error) || 'Something bad happened'
       }))
     )
   }

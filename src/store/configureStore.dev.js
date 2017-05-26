@@ -5,13 +5,17 @@ import api from '../middleware/api'
 import token from '../middleware/token'
 import rootReducer from '../reducers'
 import DevTools from '../containers/DevTools'
+import { routerMiddleware } from 'react-router-redux'
+import { browserHistory } from 'react-router'
+
+const routingmiddleware = routerMiddleware(browserHistory)
 
 const configureStore = preloadedState => {
   const store = createStore(
     rootReducer,
     preloadedState,
     compose(
-      applyMiddleware(thunk, api, token, createLogger()),
+      applyMiddleware(thunk, api, token, routingmiddleware, createLogger()),
       DevTools.instrument()
     )
   )
