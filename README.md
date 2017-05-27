@@ -1,6 +1,6 @@
 # Lora Redux UI
 
-This project is enhancement of the original UI of the [LoRa App Server](https://github.com/brocaar/lora-app-server), which is an Open Source LoRaWAN application-server.
+This project is an enhancement of the original UI part of the [LoRa App Server](https://github.com/brocaar/lora-app-server) - an open source LoRaWAN application-server.
 The main objective of this project is to have better management of the data flow and have better management of the UI Component in React. Serval React UI Components (such as Maps, Nodes) are extended for Data Visualization.
 
 ## Settings
@@ -38,6 +38,9 @@ const PartOfForm = () => {
 ```
 
 ## Demos
+
+Demo Login Page with DevTools.
+
 ![applications](docs/img/login_demo.png)
 
 ## Available Scripts
