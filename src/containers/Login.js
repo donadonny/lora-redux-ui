@@ -107,11 +107,9 @@ class Login extends Component {
                   </InputGroup>
                 </FormGroup>
                 <Space />
-                <Col smOffset={3} sm={6}>
-                  <FormGroup>
-                    <Button type="submit" bsStyle="success" block disabled={isFetching}>Signin</Button>
-                  </FormGroup>
-                </Col>
+                <FormGroup>
+                  <Button type="submit" bsStyle="success" block disabled={isFetching}>Signin</Button>
+                </FormGroup>
               </Form>
             </Col>
           </Row>

@@ -67,10 +67,10 @@ const Sidebar = ({ active, onClick }) => (
     <Brand>Menu<Icon className="fa fa-bars fa-lg" id="menu-toggle" onClick={onClick}/></Brand>
     <SidebarList>
       <SidebarItem><Link to="/">Dashboard<Icon className="fa fa-dashboard fa-lg"/></Link></SidebarItem>
-      <SidebarItem><Link to="maps/view">Maps<Icon className="fa fa-map fa-lg"/></Link></SidebarItem>
-      <SidebarItem><Link to="appSidebarItemcations">Apps<Icon className="fa fa-cogs fa-lg"/></Link></SidebarItem>
-      <SidebarItem><Link to="users">Users<Icon className="fa fa-users fa-lg"/></Link></SidebarItem>
-      <SidebarItem><Link to="gateways">Gateways<Icon className="fa fa-server fa-lg"/></Link></SidebarItem>
+      <SidebarItem><Link to="/map">Maps<Icon className="fa fa-map fa-lg"/></Link></SidebarItem>
+      <SidebarItem><Link to="/applications">Apps<Icon className="fa fa-cogs fa-lg"/></Link></SidebarItem>
+      <SidebarItem><Link to="/users">Users<Icon className="fa fa-users fa-lg"/></Link></SidebarItem>
+      <SidebarItem><Link to="/gateways">Gateways<Icon className="fa fa-server fa-lg"/></Link></SidebarItem>
     </SidebarList>
     <SidebarList bottom>
       <SidebarItem><Link to="/">Contact<Icon className="fa fa-envelope fa-lg"/></Link></SidebarItem>

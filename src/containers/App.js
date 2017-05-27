@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { toggleSiderBar } from '../actions'
 
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../components/ui/Sidebar'
 import Main from '../containers/Main'
 
 class App extends Component {
@@ -31,7 +31,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  activeSidebar: state.activeSidebar,
+  activeSidebar: state.ui.activeSidebar,
 })
 
 export default connect(mapStateToProps, {

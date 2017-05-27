@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Nav, Navbar as BsNavbar, NavItem as BsNavItem, NavDropdown as BsNavDropdown, MenuItem as BsMenuItem } from 'react-bootstrap'
 
-import Logo from "../../public/images/Logo_white.png"
+import Logo from "../../../public/images/Logo_white.png"
 
 const Wrapper = styled(BsNavbar)`
   z-index: 20;

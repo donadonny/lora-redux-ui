@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Explore from '../components/Explore'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/ui/Navbar'
 
 import { browserHistory } from 'react-router'
 import { resetErrorMessage, requestProfile, logout } from '../actions'
@@ -27,7 +26,6 @@ const Content = styled.div`
 
 class Main extends Component {
   static PropTypes = {
-    inputValue: PropTypes.string,
     errorMessage: PropTypes.string,
     currentUser: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
@@ -38,9 +36,7 @@ class Main extends Component {
   }
 
   componentWillMount() {
-    if (!this.props.isAuthenticated) {
-      this.props.requestProfile()
-    }
+    this.props.requestProfile()
   }
 
 
@@ -76,7 +72,7 @@ class Main extends Component {
   }
 
   render() {
-    const { children, active, inputValue, isAuthenticated, currentUser } = this.props
+    const { children, active, isAuthenticated, currentUser } = this.props
     return (
       <Wrapper active={active}>
         <Navbar
@@ -84,8 +80,6 @@ class Main extends Component {
           isAuthenticated={isAuthenticated}
           currentUser={currentUser}/>
         <Content>
-          <Explore value={inputValue}
-                 onChange={this.handleChange} />
           {this.renderErrorMessage()}
           {children}
         </Content>

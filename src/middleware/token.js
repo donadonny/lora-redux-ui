@@ -1,8 +1,7 @@
 import {
   LOGIN_SUCCESS, LOGOUT,
-  requestProfile
 } from '../actions'
-import { push, goBack } from 'react-router-redux'
+import { goBack } from 'react-router-redux'
 
 
 // set the token to localStorage

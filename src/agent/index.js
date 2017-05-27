@@ -17,8 +17,8 @@ const getTokenHeader = () => {
 const Auth = {
   login: (creds) =>
     () => axios.post('/api/internal/login', JSON.stringify(creds)),
-  profile: (config) =>
-    () => axios.get("/api/internal/profile", { ...config, headers: getTokenHeader()} )
+  profile: () =>
+    () => axios.get("/api/internal/profile", {headers: getTokenHeader()} )
 };
 
 export {

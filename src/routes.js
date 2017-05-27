@@ -4,11 +4,12 @@ import App from './containers/App'
 // import UserPage from './containers/UserPage'
 import RepoPage from './containers/RepoPage'
 import Login from './containers/Login'
+import MapView from './containers/maps/MapView'
 
 export default (
   <div>
     <Route path="/" component={App}>
-      {/* <Route path="maps/view" component={MapView}></Route> */}
+      <Route path="/map" component={MapView}></Route>
       <Route path="/:login/:name" component={RepoPage} />
       {/* <Route path="/:login" component={UserPage} /> */}
     </Route>

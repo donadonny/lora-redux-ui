@@ -14,10 +14,15 @@ const entities = (state = { users: {}, repos: {} }, action) => {
   return state
 }
 
-const activeSidebar = (state = false, action) => {
+const ui = (state = {
+  activeSidebar: false,
+}, action) => {
   const { type } = action
   if (type === ActionTypes.TOGGLE_SIDEBAR) {
-    return !state
+    return {
+      ...state,
+      activeSidebar: !state.activeSidebar
+    }
   }
   return state
 }
@@ -59,7 +64,7 @@ const rootReducer = combineReducers({
   pagination,
   errorMessage,
   routing,
-  activeSidebar,
+  ui,
   auth
 })
 

@@ -11,18 +11,33 @@ export const requestLogin = creds => ({
   creds,
   [CALL_API]: {
     entity: false,
+    endpoint: '',
     types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE ],
-    endpoint: '/api/internal/login',
     agent: Auth.login(creds)
+  }
+})
+
+export const PROFILE_REQUEST = 'PROFILE_REQUEST'
+export const PROFILE_SUCCESS = 'PROFILE_SUCCESS'
+export const PROFILE_FAILURE = 'PROFILE_FAILURE'
+
+export const requestProfile = () => ({
+  [CALL_API]: {
+    entity: false,
+    endpoint: '',
+    types: [PROFILE_REQUEST, PROFILE_SUCCESS, PROFILE_FAILURE ],
+    agent: Auth.profile()
   }
 })
 
 // Logout
 // Relies on the custom API middleware defined in ../middleware/api.js.
 
-export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
-export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
+export const LOGOUT = 'LOGOUT'
+
+export const logout = () => ({
+  type: LOGOUT
+})
 
 
 export const USER_REQUEST = 'USER_REQUEST'
