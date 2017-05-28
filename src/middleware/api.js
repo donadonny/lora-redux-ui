@@ -1,6 +1,5 @@
 import { normalize, schema } from 'normalizr'
 import { camelizeKeys } from 'humps'
-import axios from 'axios'
 
 // We use this Normalizr schemas to transform API responses from a nested form
 // to a flat form where repos and users are placed in `entities`, and nested
@@ -18,25 +17,28 @@ import axios from 'axios'
 // Action key that carries API call info interpreted by this Redux middleware.
 export const CALL_API = 'Call API'
 
-const API_ROOT = window.location.origin
-
-
-const userSchema = new schema.Entity('users', {}, {
-  idAttribute: user => user.login.toLowerCase()
+const nodeRecordSchema = new schema.Entity('nodeRecords', {}, {
+  idAttribute: record => record.time
 })
 
-const repoSchema = new schema.Entity('repos', {
-  owner: userSchema
-}, {
-  idAttribute: repo => repo.fullName.toLowerCase()
+const gatewaySchema = new schema.Entity('gateways', {}, {
+  idAttribute: gw => gw.mac
 })
 
-// Schemas for Github API responses.
+const gatewaysSchema = {result: [gatewaySchema]}
+
+// const repoSchema = new schema.Entity('repos', {
+//   owner: userSchema
+// }, {
+//   idAttribute: repo => repo.fullName.toLowerCase()
+// })
+
+// Schemas for API responses.
 export const Schemas = {
-  USER: userSchema,
-  USER_ARRAY: [userSchema],
-  REPO: repoSchema,
-  REPO_ARRAY: [repoSchema],
+  NODE_RECORD: nodeRecordSchema,
+  NODE_RECORD_ARRAY: [nodeRecordSchema],
+  GATEWAY: gatewaySchema,
+  GATEWAY_ARRAY: gatewaysSchema,
 }
 
 
@@ -47,10 +49,12 @@ const callApi = (agent, schema) => {
     if (response.status !== 200) {
       return Promise.reject(response.data)
     }
-    console.log(response)
+    console.log("no error", response)
 
     if (schema !== undefined) {
       const camelizedJson = camelizeKeys(response.data)
+
+      console.log(camelizedJson)
 
       return Object.assign({},
         normalize(camelizedJson, schema))
@@ -60,7 +64,7 @@ const callApi = (agent, schema) => {
 
   })
   .catch(error => {
-    console.log(error.response.data)
+    console.log("error", error.response.data)
     return Promise.reject(error.response.data)
 
   })

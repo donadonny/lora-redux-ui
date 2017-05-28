@@ -9,6 +9,7 @@ import MapView from './containers/maps/MapView'
 export default (
   <div>
     <Route path="/" component={App}>
+      <Route component={Login} />
       <Route path="/map" component={MapView}></Route>
       <Route path="/:login/:name" component={RepoPage} />
       {/* <Route path="/:login" component={UserPage} /> */}

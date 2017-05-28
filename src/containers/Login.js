@@ -64,6 +64,7 @@ class Login extends Component {
   handleSubmit = ev => {
     ev.preventDefault()
     this.props.requestLogin(this.getData())
+    this.props.resetErrorMessage()
   }
 
 
