@@ -49,12 +49,12 @@ const callApi = (agent, schema) => {
     if (response.status !== 200) {
       return Promise.reject(response.data)
     }
-    console.log("no error", response)
+    // console.log("no error", response)
 
     if (schema !== undefined) {
       const camelizedJson = camelizeKeys(response.data)
 
-      console.log(camelizedJson)
+      // console.log(camelizedJson)
 
       return Object.assign({},
         normalize(camelizedJson, schema))
@@ -64,7 +64,7 @@ const callApi = (agent, schema) => {
 
   })
   .catch(error => {
-    console.log("error", error.response.data)
+    // console.log("error", error.response.data)
     return Promise.reject(error.response.data)
 
   })

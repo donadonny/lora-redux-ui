@@ -136,19 +136,64 @@ export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE'
 
 // Resets the currently visible error message.
 export const resetErrorMessage = () => ({
-    type: RESET_ERROR_MESSAGE
+  type: RESET_ERROR_MESSAGE
 })
 
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
 
 // Toggle the Main view side bar
 export const toggleSiderBar = () => ({
-    type: TOGGLE_SIDEBAR
+  type: TOGGLE_SIDEBAR
 })
 
 export const UPDATE_GATEWAY_POPUP = 'UPDATE_GATEWAY_POPUP'
 
 export const updateGatewayPopup = (gw) => ({
-    type: UPDATE_GATEWAY_POPUP,
-    gatewayPopup: gw
+  type: UPDATE_GATEWAY_POPUP,
+  gatewayPopup: gw
+})
+
+export const UPDATE_NODE_POPUP = 'UPDATE_NODE_POPUP'
+
+export const updateNodePopup = (node) => ({
+  type: UPDATE_NODE_POPUP,
+  nodePopup: node
+})
+
+export const WS_CONNECT = 'WS_CONNECT'
+
+export const wsConnect = (url) => ({
+  type: WS_CONNECT,
+  url: url
+})
+
+export const WS_DISCONNECT = 'WS_DISCONNECT'
+
+export const wsDisconnect = (url) => ({
+  type: WS_DISCONNECT,
+})
+
+export const WS_CONNECTED = 'WS_CONNECTED'
+
+export const wsConnectd = () => ({
+  type: WS_CONNECTED
+})
+
+export const WS_DISCONNECTED = 'WS_DISCONNECTED'
+
+export const wsDisconnectd = () => ({
+  type: WS_DISCONNECTED
+})
+
+export const WS_CONNECTING = 'WS_CONNECTING'
+
+export const wsConnecting = () => ({
+  type: WS_CONNECTING
+})
+
+export const ADD_REALTIME_NODE = 'ADD_REALTIME_NODE'
+
+export const updateRealtimeNode = (node) => ({
+  type: ADD_REALTIME_NODE,
+  node: node
 })

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { Marker, Popup } from "react-mapbox-gl";
-
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import { PopupContent } from '../../components/maps/PopupContent'
 import gatewayIcon from '../../../public/images/gateway.png'
-import styled from 'styled-components'
 import { updateGatewayPopup } from '../../actions'
 
 // import { Feature, Layer } from "react-mapbox-gl";
@@ -25,17 +24,6 @@ import { updateGatewayPopup } from '../../actions'
   }
 </Layer>
 */
-
-const PopupContent = styled.div`
-  p {
-    margin: 0px;
-    padding: 0px;
-  }
-  hr {
-    margin: 0px;
-    padding: 0px;
-  }
-`
 
 class GatewayLayer extends Component {
   static propTypes = {

@@ -1,13 +1,18 @@
 import * as ActionTypes from '../actions'
 import merge from 'lodash/merge'
 import auth from './auth'
+import websocket from './websocket'
 import { routerReducer as routing } from 'react-router-redux'
 import { combineReducers } from 'redux'
 
 // Updates an entity cache in response to any action with response.entities.
-const entities = (state = { nodeRecords: {}, gateways: {} }, action) => {
+const entities = (state = { nodeRecords: {}, gateways: {}, realtimeNodes: {} }, action) => {
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities)
+  }
+
+  if (action.type === ActionTypes.ADD_REALTIME_NODE) {
+    return merge({}, state, action.node)
   }
 
   return state
@@ -15,7 +20,8 @@ const entities = (state = { nodeRecords: {}, gateways: {} }, action) => {
 
 const ui = (state = {
   activeSidebar: false,
-  gatewayPopup: null
+  gatewayPopup: null,
+  nodePopup: null,
 }, action) => {
   switch (action.type) {
     case (ActionTypes.TOGGLE_SIDEBAR):
@@ -27,6 +33,11 @@ const ui = (state = {
       return {
         ...state,
         gatewayPopup: action.gatewayPopup
+      }
+    case (ActionTypes.UPDATE_NODE_POPUP):
+      return {
+        ...state,
+        nodePopup: action.nodePopup
       }
     default:
       return state
@@ -70,7 +81,8 @@ const rootReducer = combineReducers({
   errorMessage,
   routing,
   ui,
-  auth
+  auth,
+  websocket
 })
 
 export default rootReducer
