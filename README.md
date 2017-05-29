@@ -41,7 +41,12 @@ const PartOfForm = () => {
 
 Demo Login Page with DevTools.
 
-![applications](docs/img/login_demo.png)
+![demo1](docs/img/login_demo.png)
+
+Track the History Record, check location's RSSI according to the Gateway.
+
+![demo2](docs/img/record.png)
+
 
 ## Available Scripts
 
