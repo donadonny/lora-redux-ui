@@ -9,6 +9,7 @@ import configureStore from './store/configureStore'
 //styling
 import 'font-awesome/css/font-awesome.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'rc-slider/assets/index.css';
 import './index.css'
 
 const store = configureStore()

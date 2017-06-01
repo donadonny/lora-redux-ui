@@ -39,25 +39,25 @@ export const logout = () => ({
 })
 
 
-export const NODE_RECORD_REQUEST = 'NODE_RECORD_REQUEST'
-export const NODE_RECORD_SUCCESS = 'NODE_RECORD_SUCCESS'
-export const NODE_RECORD_FAILURE = 'NODE_RECORD_FAILURE'
+export const PACKET_REQUEST = 'PACKET_REQUEST'
+export const PACKET_SUCCESS = 'PACKET_SUCCESS'
+export const PACKET_FAILURE = 'PACKET_FAILURE'
 
-const fetchNodeRecords = () => ({
+const fetchPackets = () => ({
   [CALL_API]: {
     entity: true,
-    types: [ NODE_RECORD_REQUEST, NODE_RECORD_SUCCESS, NODE_RECORD_FAILURE ],
-    agent: Node.record(),
-    schema: Schemas.NODE_RECORD_ARRAY
+    types: [ PACKET_REQUEST, PACKET_SUCCESS, PACKET_FAILURE ],
+    agent: Node.packets(),
+    schema: Schemas.PACKET_ARRAY
   }
 })
 
-export const loadNodeRecords = () => (dispatch, getState) => {
-  if (!_.isEmpty(getState().entities.nodeRecords)) {
+export const loadPackets = () => (dispatch, getState) => {
+  if (!_.isEmpty(getState().entities.packets)) {
     return null
   }
 
-  return dispatch(fetchNodeRecords())
+  return dispatch(fetchPackets())
 }
 
 
@@ -193,7 +193,20 @@ export const wsConnecting = () => ({
 
 export const ADD_REALTIME_NODE = 'ADD_REALTIME_NODE'
 
-export const updateRealtimeNode = (node) => ({
+export const addRealtimeNode = (packet) => ({
   type: ADD_REALTIME_NODE,
-  node: node
+  packet: packet
 })
+
+const ADD_PACKET = 'ADD_PACKET'
+
+export const addPacket = (packet) => ({
+  type: ADD_PACKET,
+  packet: packet
+})
+// if a realtime node is not shown in one location, then we pull it
+export const updateRealtimePacket = (packet) => (dispatch, getState) => {
+  dispatch(addPacket(packet))
+
+  return dispatch(addRealtimeNode(packet))
+}

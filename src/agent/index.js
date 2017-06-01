@@ -55,7 +55,7 @@ const Gateway = {
 const Application = {}
 
 const Node = {
-  record: () =>
+  packets: () =>
     () => axios.get('/api/nodes/location', headerConfig)
 }
 

@@ -27,8 +27,6 @@ const ws = (state={
     default:
       return state
   }
-
-  return state
 }
 
 export default ws

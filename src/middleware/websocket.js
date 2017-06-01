@@ -1,10 +1,13 @@
 import {
   WS_CONNECT, WS_DISCONNECT,
-  wsConnectd, wsDisconnectd, updateRealtimeNode, wsConnecting
+  wsConnectd, wsDisconnectd, updateRealtimePacket, wsConnecting
 } from '../actions'
-import { normalize } from 'normalizr'
-import { Schemas } from './api'
+import { normalize, schema } from 'normalizr'
 import { camelizeKeys } from 'humps'
+
+const realtimePacketSchema = new schema.Entity('realtimePackets', {}, {
+  idAttribute: packet => packet.time
+})
 
 let socket = null
 
@@ -20,11 +23,11 @@ const onMessage = (ws, store) => evt => {
   let node = JSON.parse(evt.data);
 
   const camelizedJson = camelizeKeys(node)
-
+  console.log(camelizedJson)
   store.dispatch(
-    updateRealtimeNode(
-      Object.assign({}, normalize(camelizedJson, Schemas.NODE_RECORD))
-  ))
+    updateRealtimePacket(
+      Object.assign({}, normalize(camelizedJson, realtimePacketSchema)))
+  )
 }
 
 export default store => next => action => {

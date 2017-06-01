@@ -93,7 +93,7 @@ class NodeLayer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  nodes: state.entities.nodeRecords,
+  nodes: state.entities.packets,
   nodePopup: state.ui.nodePopup,
   gateways: state.entities.gateways
 })

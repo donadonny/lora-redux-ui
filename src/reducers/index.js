@@ -6,13 +6,22 @@ import { routerReducer as routing } from 'react-router-redux'
 import { combineReducers } from 'redux'
 
 // Updates an entity cache in response to any action with response.entities.
-const entities = (state = { nodeRecords: {}, gateways: {}, realtimeNodes: {} }, action) => {
+const entities = (state = { packets: {}, gateways: {}, realtimePackets: {}, realtimeNodes: {} }, action) => {
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities)
   }
 
+  if (action.type === ActionTypes.ADD_PACKET) {
+    return merge({}, state, action.packet.entities)
+
+  }
+
+  // remove the old nodes and update new node
+
   if (action.type === ActionTypes.ADD_REALTIME_NODE) {
-    return merge({}, state, action.node)
+    let realtimeNode = action.packet.entities.realtimePackets
+    return merge({}, state, {realtimeNodes: realtimeNode})
+
   }
 
   return state

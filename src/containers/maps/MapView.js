@@ -2,16 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Mapbox, { ZoomControl } from 'react-mapbox-gl'
 import { connect } from 'react-redux'
-
-import { loadNodeRecords, loadAllGateways } from '../../actions'
+import { loadPackets, loadAllGateways } from '../../actions'
 import GatewayLayer from './GatewayLayer'
 import NodeLayer from './NodeLayer'
 import RealtimeNodeLayer from './RealtimeNodeLayer'
-
+import Slider from '../../components/ui/Slider'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-  top: 0px;
+  top: 50px;
   left: 0px;
   right: 0px;
   bottom: 0px;
@@ -22,9 +21,10 @@ const colorStyle = {
   height: "100vh",
 }
 
+
 class MapView extends Component {
   static propTypes = {
-    fetchNodeRecords: PropTypes.func,
+    fetchPackets: PropTypes.func,
     loadAllGateways: PropTypes.func,
     changeZoom: PropTypes.func,
     nodes: PropTypes.object,
@@ -33,7 +33,7 @@ class MapView extends Component {
 
   componentDidMount() {
     this.props.loadAllGateways(1000, 0)
-    this.props.loadNodeRecords()
+    this.props.loadPackets()
   }
 
   render() {
@@ -46,6 +46,7 @@ class MapView extends Component {
         center={center}>
         <ZoomControl
           position={"topLeft"} />
+        <Slider/>
         <NodeLayer />
         <GatewayLayer />
         <RealtimeNodeLayer />
@@ -54,11 +55,13 @@ class MapView extends Component {
     )
   }
 }
+//
+// onChange={this.props.filterNodesByRange}
 
 const mapStateToProps = (state, ownProps) => ({
 })
 
 export default connect(mapStateToProps, {
-  loadNodeRecords,
+  loadPackets,
   loadAllGateways,
 })(MapView)

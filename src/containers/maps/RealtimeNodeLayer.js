@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
 import { Layer, Feature } from "react-mapbox-gl"
 
 import { connect } from 'react-redux'
@@ -28,6 +27,7 @@ const paint = {
 class RealtimeNodeLayer extends Component {
   static propTypes = {
     heartbeat: PropTypes.func,
+    realtimeNodes: PropTypes.object
   }
 
   // the reason we don't use redux is because heartbeat happens per 1s
@@ -57,23 +57,43 @@ class RealtimeNodeLayer extends Component {
     clearInterval(this.interval)
   }
 
+  componentWillReceiveProps(nextProps) {
+
+  }
+
   render () {
+    const { realtimeNodes } = this.props
+    const { heartCircle } = this.state
+
     return (
       <div>
-        {/* <Layer
+        <Layer
           id="realtime"
           type="circle"
-          paint={paint}>
-          <Feature></Feature>
-        </Layer> */}
+          paint={{
+            ...paint,
+            "circle-radius": heartCircle,
+          }}>
+          {
+            _.map(realtimeNodes, (node) =>
+              <Feature
+                key={node.time}
+                coordinates={node.coordinates}
+                properties={{rssi: node.gwRssi}}
+              />
+            )
+          }
+        </Layer>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
+  realtimeNodes: state.entities.realtimeNodes
 })
 
 export default connect(mapStateToProps, {
   wsConnect,
+
 })(RealtimeNodeLayer)

@@ -17,8 +17,8 @@ import { camelizeKeys } from 'humps'
 // Action key that carries API call info interpreted by this Redux middleware.
 export const CALL_API = 'Call API'
 
-const nodeRecordSchema = new schema.Entity('nodeRecords', {}, {
-  idAttribute: record => record.time
+const packetSchema = new schema.Entity('packets', {}, {
+  idAttribute: packet => packet.time
 })
 
 const gatewaySchema = new schema.Entity('gateways', {}, {
@@ -35,8 +35,8 @@ const gatewaysSchema = {result: [gatewaySchema]}
 
 // Schemas for API responses.
 export const Schemas = {
-  NODE_RECORD: nodeRecordSchema,
-  NODE_RECORD_ARRAY: [nodeRecordSchema],
+  PACKET: packetSchema,
+  PACKET_ARRAY: [packetSchema],
   GATEWAY: gatewaySchema,
   GATEWAY_ARRAY: gatewaysSchema,
 }
